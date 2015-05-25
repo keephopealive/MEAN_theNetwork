@@ -1,0 +1,6 @@
+*{
+	outline: 1px dotted red;
+}
+div.row{
+	min-height: 50px;
+}
