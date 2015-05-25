@@ -3,9 +3,11 @@ var theNetwork = angular.module('theNetwork', ['ngRoute']);
 theNetwork.config(function ($routeProvider) {
   $routeProvider
     .when('/',{
-        templateUrl: 'partials/users.html'
+        templateUrl: 'views/partials/banner.partial.html'
     })
+    
     .otherwise({
-      redirectTo: '/'
+        redirectTo: '/',
+        templateUrl: 'views/partials/banner.partial.html'
     });
 });
