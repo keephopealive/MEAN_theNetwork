@@ -5,7 +5,7 @@ module.exports = function(app) {
 	io.sockets.on('connection', function(socket) { // on connection
 		
 		users.push({socket_id: socket.id})
-		io.emit('update_userCount', users)
+		io.emit('update_userCount', {count: (users.length)})
 		
 		socket.on('disconnect', function() { 
 			for (index in users){
@@ -13,7 +13,7 @@ module.exports = function(app) {
 					users.splice(index, 1);
 				}
 			}
-			io.emit('update_userCount', users)
+			io.emit('update_userCount', {count: (users.length)})
 		})
 
 		// socket.on('event_name', function(user){

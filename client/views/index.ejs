@@ -1,170 +1,181 @@
 <html ng-app='theNetwork'>
-<head>
-	<title>theNetwork</title>
-	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css">	
-	<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
-	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-	<script type="text/javascript" src="/js/libraries/jquery.js"></script>
-	<script type="text/javascript" src="/js/libraries/bootstrap.js"></script>
-	<script type="text/javascript" src="/js/libraries/angular.js"></script>
-	<script type="text/javascript" src="/js/libraries/angular-route.js"></script>
-	<script type="text/javascript" src="/js/index.js"></script>
-	<script type="text/javascript" src="/js/app.js"></script>
-	<script type="text/javascript" src="/js/controllers/master.ctrl.js"></script>
-	<script type="text/javascript" src="/js/factories/master.factory.js"></script>
-	<!-- // <script type="text/javascript" src="/js/controllers/users.ctrl.js"></script> -->
+	<head>
+		<title>theNetwork</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.css">
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css">
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/js/libraries/jquery.js"></script>
+		<script type="text/javascript" src="/js/libraries/bootstrap.js"></script>
+		<script type="text/javascript" src="/js/libraries/angular.js"></script>
+		<script type="text/javascript" src="/js/libraries/angular-route.js"></script>
+		<script type="text/javascript" src="/js/index.js"></script>
+		<script type="text/javascript" src="/js/app.js"></script>
+		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
+		<script type="text/javascript" src="/js/controllers/master.ctrl.js"></script>
+		<!-- // <script type="text/javascript" src="/js/controllers/users.ctrl.js"></script> -->
+	</head>
+	<body ng-controller='MasterCtrl'>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">theNetwork </a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="#/">Home</a>
+						</li>
+						
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#/">theBoards <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">Public</a>
+								</li>
+								<li>
+									<a href="#">Members Only</a>
+								</li>
+							</ul>
+						</li>
 
-</head>
-<body ng-controller='masterCtrl'>
+						<li>
+							<a href="#/theNetwork">theNetwork</a>
+						</li>
 
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>                        
-	      </button>
-	      <a class="navbar-brand" href="#">theNetwork</a>
-	    </div>
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home</a></li>
-	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Page 1-1</a></li>
-	          </ul>
-	        </li>
-	        <li><a href="#">Page 2</a></li>
-	        <li><a href="#">Page 3</a></li>
-	      </ul>
-
-	      <ul class="nav navbar-nav navbar-right">
-
-	        <li class="dropdown">
-	          <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up <span class="caret"></span></a>
-				<ul id="login-dp" class="dropdown-menu">
-					<li>
-						 <div class="row">
-								<div class="col-md-12">
-									Sign Up with Us!
-									 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">First Name</label>
-											 <input type="first_name" class="form-control" id="exampleInputfirst_name2" placeholder="First Name" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Last Name</label>
-											 <input type="last_name" class="form-control" id="exampleInputlast_name2" placeholder="Last Name" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPasswordConfirmation2">Password Confirmation</label>
-											 <input type="password" class="form-control" id="exampleInputPasswordConfirmation2" placeholder="Password Confirmation" required>
-										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> Log me in.
-											 </label>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Register</button>
-										</div>
-									 </form>
-								</div>
-								<div class="bottom text-center">
-									Already registered? <a href="#"><b>Login</b></a>
-								</div>
-						 </div>
-					</li>
-				</ul>
-	        </li>
-	        <li class="dropdown">
-	          <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in btn btn-info btn-xs dropdown-toggle"></span> Login <span class="caret"></span></a>
-				<ul id="login-dp" class="dropdown-menu">
-					<li>
-						 <div class="row">
-								<div class="col-md-12">
-										<a class="btn btn-block btn-social btn-facebook">
-											<i class="fa fa-facebook"></i> Sign in with Facebook
-										</a>
-										<a class="btn btn-block btn-social btn-twitter">
-											<i class="fa fa-twitter"></i> Sign in with Twitter
-										</a>
-										<a class="btn btn-block btn-social btn-instagram">
-											<i class="fa fa-instagram"></i> Sign in with Instagram
-										</a>
-										<a class="btn btn-block btn-social btn-reddit">
-											<i class="fa fa-reddit"></i> Sign in with Reddit
-										</a>
-										<h4>Login with us!</h4>
-									 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-												 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+						<li>
+							<a href="#/theChatroom">theChatroom</a>
+						</li>
+						
+						<li>
+							<a href="#/">Currently Online: <span id="userCount"></span></a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<!-- <li>
+							<a href="#/signup" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up </a>
+						</li>
+						<li>
+							<a href="#/login" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in btn btn-info btn-xs dropdown-toggle"></span> Login </a>
+						</li> -->
+						<li class="dropdown">
+				          <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up <span class="caret"></span></a>
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									 <div class="row">
+											<div class="col-md-12">
+												Sign Up with Us!
+												 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputEmail2">First Name</label>
+														 <input type="first_name" class="form-control" id="exampleInputfirst_name2" placeholder="First Name" required>
+													</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputEmail2">Last Name</label>
+														 <input type="last_name" class="form-control" id="exampleInputlast_name2" placeholder="Last Name" required>
+													</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+														 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+													</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputPassword2">Password</label>
+														 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+													</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputPasswordConfirmation2">Password Confirmation</label>
+														 <input type="password" class="form-control" id="exampleInputPasswordConfirmation2" placeholder="Password Confirmation" required>
+													</div>
+													<div class="checkbox">
+														 <label>
+														 <input type="checkbox"> Log me in.
+														 </label>
+													</div>
+													<div class="form-group">
+														 <button type="submit" class="btn btn-primary btn-block">Register</button>
+													</div>
+												 </form>
 											</div>
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputPassword2">Password</label>
-												 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-	                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+											<div class="bottom text-center">
+												Already registered? <a href="#"><b>Login</b></a>
 											</div>
-											<div class="checkbox">
-												 <label>
-												 	<input type="checkbox"> keep me logged-in.
-												 </label>
+									 </div>
+								</li>
+							</ul>
+				        </li>
+				        <li class="dropdown">
+				          <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in btn btn-info btn-xs dropdown-toggle"></span> Login <span class="caret"></span></a>
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									 <div class="row">
+											<div class="col-md-12">
+													<a class="btn btn-block btn-social btn-facebook">
+														<i class="fa fa-facebook"></i> Sign in with Facebook
+													</a>
+													<a class="btn btn-block btn-social btn-twitter">
+														<i class="fa fa-twitter"></i> Sign in with Twitter
+													</a>
+													<a class="btn btn-block btn-social btn-instagram">
+														<i class="fa fa-instagram"></i> Sign in with Instagram
+													</a>
+													<a class="btn btn-block btn-social btn-reddit">
+														<i class="fa fa-reddit"></i> Sign in with Reddit
+													</a>
+													<h4>Login with us!</h4>
+												 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+														<div class="form-group">
+															 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+															 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+														</div>
+														<div class="form-group">
+															 <label class="sr-only" for="exampleInputPassword2">Password</label>
+															 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+				                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+														</div>
+														<div class="checkbox">
+															 <label>
+															 	<input type="checkbox"> keep me logged-in.
+															 </label>
+														</div>
+														<div class="form-group">
+															 <button type="submit" class="btn btn-primary btn-block">Login</button>
+														</div>
+														
+												 </form>
 											</div>
-											<div class="form-group">
-												 <button type="submit" class="btn btn-primary btn-block">Login</button>
+											<div class="bottom text-center">
+												New here ? <a href="#"><b>Join Us</b></a>
 											</div>
-											
-									 </form>
-								</div>
-								<div class="bottom text-center">
-									New here ? <a href="#"><b>Join Us</b></a>
-								</div>
-						 </div>
-					</li>
-				</ul>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-
-	<div class='container' >
-
-		<div ng-view></div>
+									 </div>
+								</li>
+							</ul>
+				        </li>
+				      </ul>
+				</div>
+			</div>
+		</nav>
 		
+		<div class='container'>
+			<div ng-view></div>
+			<div class='row'>
+				<div class='col-12'></div>
+			</div>
+			<div class='row'>
+				<div class='col-12'></div>
+			</div>
+			<div class='row'>
+				<div class='col-12'></div>
+			</div>
+		</div>
+	</body>
 
-		<div class='row'>
-			<div class='col-12'>
-				
-			</div>
-		</div>
-		<div class='row'>
-			<div class='col-12'>
-				
-			</div>
-		</div>
-		<div class='row'>
-			<div class='col-12'>
-				
-			</div>
-		</div>
-	</div>
-
-</body>
 </html>

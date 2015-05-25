@@ -1,12 +1,32 @@
 *{
 	/*outline: 1px dotted red;*/
 }
+
 div.row{
+
+}
+
+/* Chatroom */
+div.chatroom{
+    background-color: rgb(235,235,235);
+}
+
+div.jumbotron{
+    background-color: rgb(235,235,235);
 }
 
 
+
+div.theNetworkMap{
+    background:url('/img/nightearth.jpg');
+    background-position: center;
+    background-size: contain;
+    height: 400px;
+}
+
 body{
-    /*background:url('/img/wintersky.jpg');*/
+    background-color: rgb(25,25,25);
+    /*background:url('/img/darksky.jpeg');*/
     background-position: center;
     padding: 10 20 20 20;
 }
