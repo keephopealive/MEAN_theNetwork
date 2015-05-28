@@ -13,14 +13,18 @@
 		<script type="text/javascript" src="/js/libraries/bootstrap.js"></script>
 		<script type="text/javascript" src="/js/libraries/angular.js"></script>
 		<script type="text/javascript" src="/js/libraries/angular-route.js"></script>
-		<script type="text/javascript" src="/js/index.js"></script>
 		<script type="text/javascript" src="/js/app.js"></script>
-		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
 		<script type="text/javascript" src="/js/controllers/master.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/users.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/sessions.ctrl.js"></script>
+		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
+		<script type="text/javascript" src="/js/factories/session.factory.js"></script>
+		<script type="text/javascript" src="/js/factories/user.factory.js"></script>
+		<script type="text/javascript" src="/js/index.js"></script>
 		<!-- // <script type="text/javascript" src="/js/controllers/users.ctrl.js"></script> -->
 	</head>
 	<body ng-controller='MasterCtrl'>
-		<nav class="navbar navbar-inverse">
+		<!-- <nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -61,14 +65,14 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<!-- <li>
+						<li>
 							<a href="#/signup" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up </a>
 						</li>
 						<li>
 							<a href="#/login" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in btn btn-info btn-xs dropdown-toggle"></span> Login </a>
-						</li> -->
+						</li>
 						<li class="dropdown">
-				          <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up <span class="caret"></span></a>
+				          <a href="" id="singup" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"></span></span> Sign Up <span class="caret"></span></a>
 							<ul id="login-dp" class="dropdown-menu">
 								<li>
 									 <div class="row">
@@ -77,23 +81,23 @@
 												 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
 													<div class="form-group">
 														 <label class="sr-only" for="exampleInputEmail2">First Name</label>
-														 <input type="first_name" class="form-control" id="exampleInputfirst_name2" placeholder="First Name" required>
+														 <input type="first_name" ng-model="newUser.first_name" class="form-control" id="exampleInputfirst_name2" placeholder="First Name" required>
 													</div>
 													<div class="form-group">
 														 <label class="sr-only" for="exampleInputEmail2">Last Name</label>
-														 <input type="last_name" class="form-control" id="exampleInputlast_name2" placeholder="Last Name" required>
+														 <input type="last_name" ng-model="newUser.last_name" class="form-control" id="exampleInputlast_name2" placeholder="Last Name" required>
 													</div>
 													<div class="form-group">
 														 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-														 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+														 <input type="email" ng-model="newUser.email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
 													</div>
 													<div class="form-group">
 														 <label class="sr-only" for="exampleInputPassword2">Password</label>
-														 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+														 <input type="password" ng-model="newUser.password"class="form-control" id="exampleInputPassword2" placeholder="Password" required>
 													</div>
 													<div class="form-group">
 														 <label class="sr-only" for="exampleInputPasswordConfirmation2">Password Confirmation</label>
-														 <input type="password" class="form-control" id="exampleInputPasswordConfirmation2" placeholder="Password Confirmation" required>
+														 <input type="password" ng-model="newUser.password_confirmation" class="form-control" id="exampleInputPasswordConfirmation2" placeholder="Password Confirmation" required>
 													</div>
 													<div class="checkbox">
 														 <label>
@@ -101,7 +105,7 @@
 														 </label>
 													</div>
 													<div class="form-group">
-														 <button type="submit" class="btn btn-primary btn-block">Register</button>
+														 <button type="submit" ng-click="register(newUser)" class="btn btn-primary btn-block">Register</button>
 													</div>
 												 </form>
 											</div>
@@ -132,23 +136,23 @@
 													</a>
 													<h4>Login with us!</h4>
 												 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-														<div class="form-group">
-															 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-															 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-														</div>
-														<div class="form-group">
-															 <label class="sr-only" for="exampleInputPassword2">Password</label>
-															 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-				                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-														</div>
-														<div class="checkbox">
-															 <label>
-															 	<input type="checkbox"> keep me logged-in.
-															 </label>
-														</div>
-														<div class="form-group">
-															 <button type="submit" class="btn btn-primary btn-block">Login</button>
-														</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+														 <input type="email" ng-model="user.email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+													</div>
+													<div class="form-group">
+														 <label class="sr-only" for="exampleInputPassword2">Password</label>
+														 <input type="password" ng-model="user.password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+			                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+													</div>
+													<div class="checkbox">
+														 <label>
+														 	<input type="checkbox" ng-model="loginUser.keep_me_logged_in"> keep me logged-in.
+														 </label>
+													</div>
+													<div class="form-group">
+														 <button type="submit" ng-click="login(user)" class="btn btn-primary btn-block">Login</button>
+													</div>
 														
 												 </form>
 											</div>
@@ -162,10 +166,21 @@
 				      </ul>
 				</div>
 			</div>
-		</nav>
+		</nav> -->
 		
 		<div class='container'>
+			<h2>Index.ejs</h2>
+			<nav>
+				<a href="/#/">Home</a>
+				<a href="/#/posts">Posts</a>
+				<a href="#/forums">Forums</a>
+				<a href="#/chatroom">Chatroom</a>
+				<a href="#/login">Login</a>
+				<a href="#/register">Register</a>
+			</nav>
+
 			<div ng-view></div>
+
 			<div class='row'>
 				<div class='col-12'></div>
 			</div>
@@ -177,5 +192,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>

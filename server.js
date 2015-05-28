@@ -12,15 +12,15 @@ app.use(express.static(__dirname + '/client'))
 // Mongoose
 require('./server/config/mongoose.js');
 
+// SQL
+require('./server/config/sql.js');
+
+
 // Templating Engine
 app.set("view engine", "ejs")
-app.set("views", (__dirname + "/client/views"))
+app.set("views", (__dirname + "/server/views"))
 
 // HTTP Routes`	
 require('./server/config/routes.js')(app);
 // Socket Routes
 require('./server/config/socket.routes.js')(app);
-
-
-
-

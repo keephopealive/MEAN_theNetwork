@@ -1,4 +1,10 @@
-<div class="container-fluid">
+<h2>Login Partial</h2>
+
+{{errors}}
+<input type='text' ng-model='user.email'>
+<input type='password' ng-model='user.password'>
+<button ng-click='login(user)'>Login</button>
+<!-- <div class="container-fluid">
   <section class="container">
     <div class="row">
       <div class="col-md-6">
@@ -46,4 +52,4 @@
       </div>
     </div>
   </section>
-</div>
+</div> -->

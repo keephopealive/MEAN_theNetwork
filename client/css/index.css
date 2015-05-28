@@ -8,29 +8,29 @@ div.row{
 
 /* Chatroom */
 div.chatroom{
-    background-color: rgb(235,235,235);
+    /*background-color: rgb(235,235,235);*/
 }
 
 div.jumbotron{
-    background-color: rgb(235,235,235);
+    /*background-color: rgb(235,235,235);*/
 }
 
 
 
 div.theNetworkMap{
-    background:url('/img/nightearth.jpg');
+/*    background:url('/img/nightearth.jpg');
     background-position: center;
     background-size: contain;
     height: 400px;
-}
+*/}
 
 body{
-    background-color: rgb(25,25,25);
-    /*background:url('/img/darksky.jpeg');*/
+    /*background-color: rgb(25,25,25);
+    background:url('/img/darksky.jpeg');
     background-position: center;
-    padding: 10 20 20 20;
+    padding: 10 20 20 20;*/
 }
-
+/*
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -80,4 +80,4 @@ body{
         background-color: inherit;
         border-top:0 none;
     }
-}
+}*/

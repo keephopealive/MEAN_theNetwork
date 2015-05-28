@@ -1,4 +1,15 @@
-<div class="container-fluid">
+<h2>SignUp Partial</h2>
+{{}}
+
+<li ng-repeat="error in errors">{{error.message}}</li>
+
+<input type='text' placeholder='First Name' ng-model='newUser.first_name'>
+<input type='text' placeholder='Last Name' ng-model='newUser.last_name'>
+<input type='text' placeholder='Email' ng-model='newUser.email'>
+<input type='text' placeholder='Password' ng-model='newUser.password'>
+<input type='text' placeholder='Confirm Password' ng-model='newUser.confirm_password'>
+<button ng-click='register(newUser)'>Register</button>
+<!-- <div class="container-fluid">
 	<section class="container">
 		<div class="container-page">
 			<div class="col-md-6">
@@ -40,4 +51,4 @@
 			</div>
 		</div>
 	</section>
-</div>
+</div> -->

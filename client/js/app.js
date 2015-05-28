@@ -5,20 +5,30 @@ theNetwork.config(function ($routeProvider) {
     .when('/',{
         templateUrl: 'views/partials/banner.partial.html'
     })
-    .when('/signup',{
-        templateUrl: 'views/partials/signup.partial.html'
+    .when('/register',{
+        templateUrl: 'views/partials/register.partial.html',
+        controller: 'UsersController'
     })
     .when('/login',{
-        templateUrl: 'views/partials/login.partial.html'
+        templateUrl: 'views/partials/login.partial.html',
+        controller: 'SessionsController'
     })
-    .when('/theNetwork',{
-        templateUrl: 'views/partials/theNetwork.partial.html'
+    .when('/network',{
+        templateUrl: 'views/partials/network.partial.html'
     })
-    .when('/theChatroom',{
-        templateUrl: 'views/partials/theChatroom.partial.html'
+    // .when('/messages',{
+    //     templateUrl: 'views/partials/messages.partial.html'
+    // })
+    .when('/chatroom',{
+        templateUrl: 'views/partials/chatroom.partial.html'
+    })
+    .when('/forums',{
+        templateUrl: 'views/partials/forums.partial.html'
+    })
+    .when('/posts',{
+        templateUrl: 'views/partials/posts.partial.html'
     })
     .otherwise({
         redirectTo: '/',
-        templateUrl: 'views/partials/banner.partial.html'
     });
 });
