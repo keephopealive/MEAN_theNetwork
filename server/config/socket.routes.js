@@ -1,24 +1,28 @@
-module.exports = function(app) {
-
-	var users = [];
+module.exports = (function(app) {
+	var users = []
 
 	io.sockets.on('connection', function(socket) { // on connection
-		
-		users.push({socket_id: socket.id})
-		io.emit('update_userCount', {count: (users.length)})
+
+		socket.on('add_user', function(user){
+			console.log("@@@@ ", user)
+			users.push({socket: socket.id, name:user.newUser})
+			console.log(users)
+			io.emit('update_users_list', users)
+		})
 		
 		socket.on('disconnect', function() { 
-			for (index in users){
-				if (users[index].socket_id == socket.id){
-					users.splice(index, 1);
+			for(index in users){
+				if(socket.id == users[index].socket){
+					users.splice(index, 1)
 				}
-			}
-			io.emit('update_userCount', {count: (users.length)})
+			} 
+			io.emit('update_users_list', users)
 		})
 
-		// socket.on('event_name', function(user){
-		
-		// })
+		socket.on('msg_from_client', function(msg){
+			io.emit('add_msg_to_chat', msg)
+		})
+
 		// (Action) Emit to Client - Response to Client who emitted 'button_clicked'
 		// socket.emit('server_response', {response: "Working"}); 
 	    
@@ -27,8 +31,9 @@ module.exports = function(app) {
 	    
 	    // (Action) Broadcast to all including Client (who emitted 'button_clicked') 
 		// io.emit('server_response', {response: "Working"});
-	})
 
 
+	});
 
-}
+
+})

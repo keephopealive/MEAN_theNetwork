@@ -1,19 +1,48 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+    	
+    	var socket = io.connect()
+
+    	var userName = prompt('What is your name?')
+    	
+    	socket.emit('add_user', {newUser: userName})
+
+    	socket.on('update_users_list', function(users){
+    		console.log('users from server:', users)
+    		$('div.users').html("")
+    		for(index in users){
+				$('div.users').append("<li>"+users[index].name+"</li>")
+    		}
+    		
+    	})
+	    
+    	$(document).on('click', 'button', function(){
+			socket.emit('msg_from_client', { msg: $('input').val(), name: userName} )
+			$('input').val("") // clears the inputbox
+		})
+
+		socket.on('add_msg_to_chat', function(msg){
+			$('div.messages').append("<p>"+msg.name+": "+msg.msg+"</p>")
+		})
+
+	});
+</script>
+
 <h2>Chatroom Partial</h2>
 
-<!-- <div class="container-fluid">
+<div class="container-fluid">
 	<section class="container">
 		<div class="row chatroom">
-			<div class="col-md-8">
-				<h4>Chatroom</h4>
+			
+			<div class='left'>
+				<div class='messages'></div>
+				<input type='text' class='messageBox'>
+				<button>Send Message</button>
 			</div>
-			<div class="col-md-4">
-				<h4>Users:</h4>
+			<div class='right'>
+				<div class='users'></div>
 			</div>
-		</div>
-		<div class='row chatroom'>
-			<div class="col-md-12">
-				<input type='text'>
-			</div>
+
 		</div>
 	</section>
-</div> -->
+</div>

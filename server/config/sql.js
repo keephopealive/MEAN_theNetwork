@@ -1,5 +1,5 @@
 var db = require('mysql');
-var connection = db.createConnection({
+connection = db.createConnection({
   host: "localhost",
   port : 8889,
   user: "root",
@@ -8,7 +8,6 @@ var connection = db.createConnection({
 });
 
 module.exports = (function() {
-
   return {
     add_status: function (request, response) {
       var query = "insert into status(s_text,t_status) values ('" + s.status + "',CURRENT_TIMESTAMP)";
@@ -35,6 +34,5 @@ module.exports = (function() {
         }
       })
     }
-
   }
 })();

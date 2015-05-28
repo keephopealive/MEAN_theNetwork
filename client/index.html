@@ -17,9 +17,13 @@
 		<script type="text/javascript" src="/js/controllers/master.ctrl.js"></script>
 		<script type="text/javascript" src="/js/controllers/users.ctrl.js"></script>
 		<script type="text/javascript" src="/js/controllers/sessions.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/forums.ctrl.js"></script>
+
 		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
 		<script type="text/javascript" src="/js/factories/session.factory.js"></script>
-		<script type="text/javascript" src="/js/factories/user.factory.js"></script>
+		<script type="text/javascript" src="/js/factories/user.factory.js"></script>.
+		<script type="text/javascript" src="/js/factories/forum.factory.js"></script>.
+
 		<script type="text/javascript" src="/js/index.js"></script>
 		<!-- // <script type="text/javascript" src="/js/controllers/users.ctrl.js"></script> -->
 	</head>
@@ -169,15 +173,17 @@
 		</nav> -->
 		
 		<div class='container'>
-			<h2>Index.ejs</h2>
-			<nav>
-				<a href="/#/">Home</a>
-				<a href="/#/posts">Posts</a>
-				<a href="#/forums">Forums</a>
-				<a href="#/chatroom">Chatroom</a>
-				<a href="#/login">Login</a>
-				<a href="#/register">Register</a>
-			</nav>
+			<header>
+				<h2>Index.ejs</h2>
+				<nav>
+					<a href="/#/">Home</a>
+					<a href="/#/posts">Posts</a>
+					<a href="#/forums">Forums</a>
+					<a href="#/chatroom">Chatroom</a>
+					<a href="#/login">Login</a>
+					<a href="#/register">Register</a>
+				</nav>
+			</header>
 
 			<div ng-view></div>
 

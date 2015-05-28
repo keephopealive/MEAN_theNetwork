@@ -16,17 +16,18 @@ theNetwork.config(function ($routeProvider) {
     .when('/network',{
         templateUrl: 'views/partials/network.partial.html'
     })
-    // .when('/messages',{
-    //     templateUrl: 'views/partials/messages.partial.html'
-    // })
     .when('/chatroom',{
         templateUrl: 'views/partials/chatroom.partial.html'
     })
     .when('/forums',{
-        templateUrl: 'views/partials/forums.partial.html'
+        templateUrl: 'views/partials/forums.partial.html',
+        controller: 'ForumsController'
     })
     .when('/posts',{
         templateUrl: 'views/partials/posts.partial.html'
+    })
+    .when('/dashboard',{
+        templateUrl: 'views/partials/dashboard.partial.html'
     })
     .otherwise({
         redirectTo: '/',

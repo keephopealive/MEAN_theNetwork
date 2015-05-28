@@ -1,6 +1,8 @@
 module.exports = function(app) {
   	var users = require('../controllers/users.js')
   	var sessions = require('../controllers/sessions.js')
+  	var forums = require('../controllers/forums.js')
+
   	var sql = require('../config/sql.js')
 
   	// Root
@@ -21,7 +23,7 @@ module.exports = function(app) {
 // User
 
     // Index
-	app.get('/users', function(request, response) { users.retrieve(request, response) })
+	app.get('/users', function(request, response) { users.index(request, response) })
 	// New
 	app.get('/users/new', function(request, response) { users.create(request, response) })
 	// Show
@@ -38,7 +40,7 @@ module.exports = function(app) {
 // Session
 
 	// Index
-	app.get('/sessions', function(request, response) { sessions.retrieve(request, response) })
+	app.get('/sessions', function(request, response) { sessions.index(request, response) })
 	// New
 	app.get('/sessions/new', function(request, response) { sessions.create(request, response) })
 	// Show
@@ -51,4 +53,19 @@ module.exports = function(app) {
 	app.post('/sessions/:id/destroy', function(request, response) { sessions.destroy(request, response) })
 	// Update app.put/patch('/sessions/:id') 
 	app.post('/sessions/:id/update', function(request, response) { sessions.update(request, response) })
+
+
+// Forum - CRUD
+
+    // Index (R)
+	app.get('/forums', function(request, response) { forums.index(request, response) })
+	// Create (C)
+	app.post('/forums', function(request, response) { forums.create(request, response) })	
+	// Destroy app.delete('/forums/:id') (D)
+	app.post('/forums/:id/destroy', function(request, response) { forums.destroy(request, response) })
+	// Update app.put/patch('/forums/:id') (U)
+	app.post('/forums/:id/update', function(request, response) { forums.update(request, response) })
+
+
+
 }
