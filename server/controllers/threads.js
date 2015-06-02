@@ -12,7 +12,7 @@ module.exports = (function() {
 			// })
 	    },
 	    general: function(request, response){
-	    	var query = "SELECT * FROM threads LEFT JOIN posts ON threads.id = posts.thread_id WHERE threads.title = 'General'";
+	    	var query = "SELECT * FROM threads LEFT JOIN posts ON threads.id = posts.thread_id WHERE threads.title = 'General' ORDER BY rating DESC, created_at ASC";
 	    	connection.query(query, function (err, rows){
 	    		if (err) 
 	    			response.json(err)
@@ -22,7 +22,7 @@ module.exports = (function() {
 	    },
 	    getPostnComments: function(request, response){
 	    	console.log(request.params)
-	    	var query = "SELECT * FROM posts WHERE id = " + request.params.id + "; SELECT * FROM comments WHERE comments.post_id = " + request.params.id + ";"; 
+	    	var query = "SELECT * FROM posts WHERE id = " + request.params.id + "; SELECT * FROM comments WHERE comments.post_id = " + request.params.id + " ORDER BY rating DESC;"; 
 	    	console.log(query)
 	    	connection.query(query, function (err, results){
 	    		console.log(results)

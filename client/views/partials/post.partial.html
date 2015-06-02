@@ -10,7 +10,7 @@
 
 		<div ng-repeat="comment in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
 			<hr>
-			<h5 ng-bind="comment.content"></h5>
+			<span ng-bind="comment.rating"></span><h5 ng-bind="comment.content"></h5>
 		</div>
 		<hr>
 
