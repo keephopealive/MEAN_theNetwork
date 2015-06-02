@@ -9,17 +9,45 @@ module.exports = (function() {
 		new: function(request, response){
 			console.log("Server / Ctrl / Sessions - New")
 		},
-		create: function(request, response){
-			console.log("Server / Ctrl / Sessions - Create")
+		authenticate: function(request, response){
 			User.findOne({email: request.body.email, password:request.body.password}, function(err, record){
 				if(record){
+					console.log("SUCCESS", record)
 					response.json({
 						action: 'login',
 						status: true,
-						user: record
+						auth_token: 'value', // unique key
+						uid: record._id
 					})
 				}
 				else{
+					console.log("FAILED")
+					response.json({
+						action: 'login',
+						status: false,
+						attempt: 1,
+						errors: err
+					})
+				}
+					
+			})
+		},
+		create: function(request, response){
+			console.log("Server / Ctrl / Sessions - Create, request", request.body)
+			User.findOne({_id: request.body.uid}, function(err, record){
+				console.log(err)
+				console.log(record)
+				if(record){
+					console.log("SUCCESS 2")
+					response.render('dashboard')
+					// response.json({
+					// 	action: 'login',
+					// 	status: true,
+					// 	user: record // unique key
+					// })
+				}
+				else{
+					console.log("FAILED 2")
 					response.json({
 						action: 'login',
 						status: false,

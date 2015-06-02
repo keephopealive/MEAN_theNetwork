@@ -1,7 +1,4 @@
-var User = mongoose.model('User')
-
 module.exports = (function() {
-
 	return {
 		index: function(request, response){
 			// var query = "SELECT * FROM forums"
@@ -14,16 +11,25 @@ module.exports = (function() {
 		 //        }
 			// })
 	    },
-	    getGeneral: function(request, response){
+	    general: function(request, response){
 	    	var query = "SELECT * FROM threads LEFT JOIN posts ON threads.id = posts.thread_id WHERE threads.title = 'General'";
 	    	connection.query(query, function (err, rows){
-	    		if (err) {
-	    			console.log("Err General request")
+	    		if (err) 
 	    			response.json(err)
-	    		} 
-	    		else {
+				else
 	    			response.json(rows)
-	    		}
+	    	})
+	    },
+	    getPostnComments: function(request, response){
+	    	console.log(request.params)
+	    	var query = "SELECT * FROM posts WHERE id = " + request.params.id + "; SELECT * FROM comments WHERE comments.post_id = " + request.params.id + ";"; 
+	    	console.log(query)
+	    	connection.query(query, function (err, results){
+	    		console.log(results)
+	    		if (err) 
+	    			response.json(err)
+				else
+	    			response.json(results)
 	    	})
 	    }
 	}

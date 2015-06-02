@@ -23,6 +23,10 @@ theNetwork.config(function ($routeProvider) {
         templateUrl: 'views/partials/forums.partial.html',
         controller: 'ForumsController'
     })
+    .when('/post/:id',{
+        templateUrl: 'views/partials/post.partial.html',
+        controller: 'PostController'
+    })
     .when('/posts',{
         templateUrl: 'views/partials/posts.partial.html'
     })

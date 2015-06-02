@@ -1,10 +1,14 @@
 var db = require('mysql');
 connection = db.createConnection({
+
   host: "localhost",
   port : 8889,
   user: "root",
   password: "root",
-  database: "projectSchema"
+  database: "projectSchema",
+
+  multipleStatements: true
+  
 });
 
 module.exports = (function() {

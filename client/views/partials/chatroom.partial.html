@@ -1,5 +1,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("input").focus();
     	
     	var socket = io.connect()
 
@@ -10,12 +11,10 @@
     	socket.on('update_users_list', function(users){
     		console.log('users from server:', users)
     		$('div.users').html("")
-    		for(index in users){
+    		for(index in users)
 				$('div.users').append("<li>"+users[index].name+"</li>")
-    		}
-    		
     	})
-	    
+
     	$(document).on('click', 'button', function(){
 			socket.emit('msg_from_client', { msg: $('input').val(), name: userName} )
 			$('input').val("") // clears the inputbox
@@ -23,26 +22,38 @@
 
 		socket.on('add_msg_to_chat', function(msg){
 			$('div.messages').append("<p>"+msg.name+": "+msg.msg+"</p>")
+			.animate({ scrollTop: $('div.messages')[0].scrollHeight}, 1000);
 		})
 
 	});
 </script>
+<style type="text/css">
+	input.messageBox{
+		width: 70%;
+	}
+	div.messages{
+		height: 300px;
+		overflow: scroll;
+	}
+</style>
 
 <h2>Chatroom Partial</h2>
 
 <div class="container-fluid">
 	<section class="container">
-		<div class="row chatroom">
-			
-			<div class='left'>
-				<div class='messages'></div>
-				<input type='text' class='messageBox'>
-				<button>Send Message</button>
+
+		<div class="row">
+			<div class='col-xs-8'>
+				<div class='col-8 messages'></div>
 			</div>
-			<div class='right'>
+			<div class='col-xs-4'>
 				<div class='users'></div>
 			</div>
-
+			<div class='col-xs-8'>
+				<input type='text' class='messageBox'>
+				<button class='btn btn-success'>Send Message</button>
+			</div>
 		</div>
+
 	</section>
 </div>

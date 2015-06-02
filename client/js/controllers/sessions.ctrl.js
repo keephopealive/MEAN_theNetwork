@@ -3,6 +3,7 @@ theNetwork.controller('SessionsController', function($scope, $routeParams, $loca
 	$scope.login = function(user){
 		SessionFactory.create(user, function(server_response){
 			if (server_response.status){
+				SessionFactory.newPage();
 				$location.path('/dashboard')
 				console.log("Successful Login, user: ", server_response.user)
 			}
@@ -16,7 +17,7 @@ theNetwork.controller('SessionsController', function($scope, $routeParams, $loca
 		// SessionFactory.destroy(); 
 	}
 
-	
+
 
 
 

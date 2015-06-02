@@ -2,6 +2,8 @@ module.exports = function(app) {
   	var users = require('../controllers/users.js')
   	var sessions = require('../controllers/sessions.js')
   	var forums = require('../controllers/forums.js')
+	var threads = require('../controllers/threads.js')
+
 
   	var sql = require('../config/sql.js')
 
@@ -41,12 +43,8 @@ module.exports = function(app) {
 
 	// Index
 	app.get('/sessions', function(request, response) { sessions.index(request, response) })
-	// New
-	app.get('/sessions/new', function(request, response) { sessions.create(request, response) })
-	// Show
-	app.get('/sessions/:id', function(request, response) { sessions.show(request, response) })
-	// Edit 
-	app.post('/sessions/:id/edit', function(request, response) { sessions.update(request, response) })
+	// Authenticate
+	app.post('/sessions/authenticate', function(request, response) { sessions.authenticate(request, response) })	
 	// Create
 	app.post('/sessions', function(request, response) { sessions.create(request, response) })	
 	// Destroy app.delete('/sessions/:id')
@@ -54,17 +52,23 @@ module.exports = function(app) {
 	// Update app.put/patch('/sessions/:id') 
 	app.post('/sessions/:id/update', function(request, response) { sessions.update(request, response) })
 
+  
+// Threads - CRUD
 
-// Forum - CRUD
+	// Get all General Posts
+	app.get('/threads/general.json',function(request, response) { threads.general(request, response) })
+	// Get Post and it's Comments
+	app.get('/threads/getPostnComments.json/:id',function(request, response) { threads.getPostnComments(request, response) })
 
-    // Index (R)
-	app.get('/forums', function(request, response) { forums.index(request, response) })
+  // Index (R)
+	app.get('/threads', function(request, response) { threads.index(request, response) })
 	// Create (C)
-	app.post('/forums', function(request, response) { forums.create(request, response) })	
-	// Destroy app.delete('/forums/:id') (D)
-	app.post('/forums/:id/destroy', function(request, response) { forums.destroy(request, response) })
-	// Update app.put/patch('/forums/:id') (U)
-	app.post('/forums/:id/update', function(request, response) { forums.update(request, response) })
+	app.post('/threads', function(request, response) { threads.create(request, response) })	
+	// Destroy app.delete('/threads/:id') (D)
+	app.post('/threads/:id/destroy', function(request, response) { threads.destroy(request, response) })
+	// Update app.put/patch('/threads/:id') (U)
+	app.post('/threads/:id/update', function(request, response) { threads.update(request, response) })
+
 
 
 

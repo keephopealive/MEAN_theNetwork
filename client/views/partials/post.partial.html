@@ -2,16 +2,15 @@
 <div class="container-fluid">
 
 <hr>
-<h3>Public Forums</h3>
-
-	<h3>General</h3>
+	<h3 ng-bind="post.title"></h3>
+	<p ng-bind="post.content"></p>
 
 	<section class="container">
 
-		<div ng-repeat="post in posts | startFrom:currentPage*pageSize | limitTo:pageSize">
-			<hr>
 
-			<a ng-href="#/post/{{post.id}}"><span ng-bind="post.rating"></span> <h5 ng-bind="post.title"></h5></a>
+		<div ng-repeat="comment in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+			<hr>
+			<h5 ng-bind="comment.content"></h5>
 		</div>
 		<hr>
 
@@ -26,5 +25,3 @@
 </div>
 
 
-
-    

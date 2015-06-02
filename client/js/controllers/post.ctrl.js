@@ -1,4 +1,4 @@
-theNetwork.controller('ForumsController', function($scope, $routeParams, forumFactory) {
+theNetwork.controller('PostController', function($scope, $routeParams, forumFactory) {
 
 	$scope.currentPage = 0;
     $scope.pageSize = 10;
@@ -7,17 +7,18 @@ theNetwork.controller('ForumsController', function($scope, $routeParams, forumFa
 	 	return Math.ceil($scope.data.length/$scope.pageSize);                
     }
 
-	function getGeneralThreads(){
-		forumFactory.getGeneralThreads(function(posts){
-			$scope.posts = posts;
-			console.log(posts)
-			$scope.data = posts;
+    console.log($routeParams.id)
+
+	function getPostnComments(){
+		forumFactory.getPostnComments($routeParams.id, function(content){
+			console.log(content)
+			$scope.post = content[0][0];
+			$scope.comments = content[1];
+			$scope.data = content[1];
+
 		})
 	}
-
-	getGeneralThreads();
-
-
+	getPostnComments();
 
 })
 
