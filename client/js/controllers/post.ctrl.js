@@ -20,6 +20,20 @@ theNetwork.controller('PostController', function($scope, $routeParams, forumFact
 	}
 	getPostnComments();
 
+    // $scope.newComment = ""
+
+    // $scope.addComment = function(newComment){
+    //     $scope.newComment.post_id = $scope.post.id
+    //     if(newComment){
+    //         console.log(newComment)
+    //         forumFactory.addComment(newComment, function(result){
+    //             console.log("returned to C from F with result: ", result)
+    //         })
+    //     }
+
+    //     $scope.newComment = ""
+    // }
+
 })
 
 

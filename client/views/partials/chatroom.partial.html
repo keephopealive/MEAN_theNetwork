@@ -18,6 +18,14 @@
     	$(document).on('click', 'button', function(){
 			socket.emit('msg_from_client', { msg: $('input').val(), name: userName} )
 			$('input').val("") // clears the inputbox
+			$("input").focus();
+		})
+		$(document).on('keypress', function(e){
+			if(e.charCode == 13){
+				socket.emit('msg_from_client', { msg: $('input').val(), name: userName} )
+				$('input').val("") // clears the inputbox
+				$("input").focus();	
+			}
 		})
 
 		socket.on('add_msg_to_chat', function(msg){

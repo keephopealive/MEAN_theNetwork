@@ -12,20 +12,21 @@ module.exports = (function() {
 		authenticate: function(request, response){
 			User.findOne({email: request.body.email, password:request.body.password}, function(err, record){
 				if(record){
-					console.log("SUCCESS", record)
+					console.log("AUTH SUCCESS", record)
 					response.json({
 						action: 'login',
 						status: true,
-						auth_token: 'value', // unique key
-						uid: record._id
+						auth_token: '123abc', // unique key
+						uid: record.id
 					})
 				}
 				else{
-					console.log("FAILED")
+					console.log("AUTH FAILED")
 					response.json({
 						action: 'login',
 						status: false,
 						attempt: 1,
+						msg: 'Invalid Credentials',
 						errors: err
 					})
 				}
@@ -33,36 +34,16 @@ module.exports = (function() {
 			})
 		},
 		create: function(request, response){
-			console.log("Server / Ctrl / Sessions - Create, request", request.body)
-			User.findOne({_id: request.body.uid}, function(err, record){
-				console.log(err)
-				console.log(record)
-				if(record){
-					console.log("SUCCESS 2")
-					response.render('dashboard')
-					// response.json({
-					// 	action: 'login',
-					// 	status: true,
-					// 	user: record // unique key
-					// })
-				}
-				else{
-					console.log("FAILED 2")
-					response.json({
-						action: 'login',
-						status: false,
-						attempt: 1,
-						errors: err
-					})
-				}
-					
+
+			User.findOne({_id: request.params.uid}, function(err, record){
+				// Replace record w/ record.auth_token
+				if(record && '123abc' == request.params.auth_token && record._id == request.params.uid){
+					request.session.auth = '5389uhyjw0ju0589j03h89jw3890'
+					console.log(request.session)
+					response.redirect('/dashboard')
+				}	
 			})
-			// newUser.save(function(err, user){
-			// 	if(err)
-			// 		response.json(err)
-			// 	else
-			// 		response.json(user)
-			// })
+
 		},
 		edit: function(request, response){
 			console.log("Server / Ctrl / Sessions - Edit")

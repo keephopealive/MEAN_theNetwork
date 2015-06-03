@@ -16,10 +16,14 @@ module.exports = function(app) {
 
 	})
 	app.get('/dashboard', function(request, response){
-		console.log("A")
-		sql.retrieve(request, response);
+		if (request.session.auth == '5389uhyjw0ju0589j03h89jw3890') {
+			response.render('dashboard')
+		}
+		else {
+			request.session.auth = undefined;
+			response.redirect('/')
+		}
 
-		// response.render('dashboard')
 	})
 
 // User
@@ -43,10 +47,13 @@ module.exports = function(app) {
 
 	// Index
 	app.get('/sessions', function(request, response) { sessions.index(request, response) })
+	// Create
+	app.get('/sessions/authenticated/:auth_token/:uid', function(request, response) { 
+		sessions.create(request, response) 
+	})	
+
 	// Authenticate
 	app.post('/sessions/authenticate', function(request, response) { sessions.authenticate(request, response) })	
-	// Create
-	app.post('/sessions', function(request, response) { sessions.create(request, response) })	
 	// Destroy app.delete('/sessions/:id')
 	app.post('/sessions/:id/destroy', function(request, response) { sessions.destroy(request, response) })
 	// Update app.put/patch('/sessions/:id') 
@@ -69,7 +76,15 @@ module.exports = function(app) {
 	// Update app.put/patch('/threads/:id') (U)
 	app.post('/threads/:id/update', function(request, response) { threads.update(request, response) })
 
+	app.post('/threads/addComment.json', function(request, response) { threads.addComment(request, response) })
+	
 
-
+// WILDCARD Redirect to Mask unused urls.
+	app.get('/*', function(request, response){
+		response.redirect('/')
+	})
+	app.post('/*', function(request, response){
+		response.redirect('/')
+	})
 
 }

@@ -18,6 +18,14 @@ theNetwork.factory('forumFactory', function($http) {
 		})
 	}
 
+	// factory.addComment = function(newComment, callback){
+	// 	$http.post('/threads/addComment.json', newComment)
+	// 	.success(function(response){
+	// 		console.log("back from server - response: ", response)
+	// 		callback(response)
+	// 	})
+	// }
+
 	return factory;
 
 });
