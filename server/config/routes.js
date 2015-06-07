@@ -12,12 +12,13 @@ module.exports = function(app) {
 	  // users.retrieve(request, response)
 	  // response.render('index.ejs')
 	  // response.json
-		sql.retrieve(request, response);
+		// sql.retrieve(request, response);
+		response.render('guest.ejs')
 
 	})
 	app.get('/dashboard', function(request, response){
 		if (request.session.auth == '5389uhyjw0ju0589j03h89jw3890') {
-			response.render('dashboard')
+			response.render('user.ejs', {auth:request.session.auth_validation})
 		}
 		else {
 			request.session.auth = undefined;
@@ -62,6 +63,8 @@ module.exports = function(app) {
   
 // Threads - CRUD
 
+	// GUEST
+
 	// Get all General Posts
 	app.get('/threads/general.json',function(request, response) { threads.general(request, response) })
 	// Get Post and it's Comments
@@ -78,6 +81,18 @@ module.exports = function(app) {
 
 	app.post('/threads/addComment.json', function(request, response) { threads.addComment(request, response) })
 	
+
+	// USER
+
+	// Get all Posts (user)
+	app.get('/threads/allthreads.json',function(request, response) { 
+		console.log("ALL REQUEST")
+		threads.allthreads(request, response) 
+	})
+	
+
+
+
 
 // WILDCARD Redirect to Mask unused urls.
 	app.get('/*', function(request, response){

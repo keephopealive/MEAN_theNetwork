@@ -1,0 +1,42 @@
+<div class="container-fluid">
+<div class="row">
+	<div class="col-12">
+		<h2>Forums</h2>
+	</div>
+</div>
+	<h3>General</h3>
+
+	<section class="container">
+
+aaa
+		<div ng-repeat="thread in threads">
+bbbb
+			<div ng-repeat="post in thread | startFrom:currentPage*pageSize | limitTo:pageSize">
+				<hr>
+
+				<a ng-href="#/post/{{post.id}}"><span ng-bind="post.rating"></span> <h5 ng-bind="post.title"></h5></a>
+			</div>
+
+
+		</div>
+
+		
+	
+
+
+
+		<!-- <hr> -->
+<!-- 
+		<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+	        Previous
+	    </button>
+	    <span ng-bind="currentPage+1"></span>/<span ng-bind="numberOfPages()"></span>
+	    <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+	        Next
+	    </button> -->
+	</section>
+</div>
+
+
+
+    

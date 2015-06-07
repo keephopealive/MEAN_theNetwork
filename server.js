@@ -17,7 +17,14 @@ app.use(session({
   saveUninitialized: true
 }))
 
+// Templating Engine
+app.set("view engine", "ejs")
+app.set("views", (__dirname + "/server/views"))
+
 app.use(express.static(__dirname + '/client'))
+app.use(express.static(__dirname + '/client/guest'))
+app.use(express.static(__dirname + '/client/user'))
+
 
 // Mongoose
 require('./server/config/mongoose.js');
@@ -28,7 +35,5 @@ require('./server/config/routes.js')(app);
 // Socket Routes
 require('./server/config/socket.routes.js')(app);
 
-// Templating Engine
-app.set("view engine", "ejs")
-app.set("views", (__dirname + "/server/views"))
+
 

@@ -1,6 +1,6 @@
 <html ng-app='theNetwork'>
 	<head>
-		<title>theNetwork</title>
+		<title>SAMPLE theNetwork</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -9,14 +9,22 @@
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="/css/index.css">
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-		<script type="text/javascript" src="/js/index.js"></script>
 		<script type="text/javascript" src="/js/libraries/jquery.js"></script>
 		<script type="text/javascript" src="/js/libraries/bootstrap.js"></script>
 		<script type="text/javascript" src="/js/libraries/angular.js"></script>
 		<script type="text/javascript" src="/js/libraries/angular-route.js"></script>
 		<script type="text/javascript" src="/js/app.js"></script>
-		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
 		<script type="text/javascript" src="/js/controllers/master.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/users.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/sessions.ctrl.js"></script>
+		<script type="text/javascript" src="/js/controllers/post.ctrl.js"></script>
+
+		<script type="text/javascript" src="/js/controllers/forums.ctrl.js"></script>
+		<script type="text/javascript" src="/js/factories/master.factory.js"></script>
+		<script type="text/javascript" src="/js/factories/session.factory.js"></script>
+		<script type="text/javascript" src="/js/factories/user.factory.js"></script>.
+		<script type="text/javascript" src="/js/factories/forum.factory.js"></script>.
+		<script type="text/javascript" src="/js/index.js"></script>
 		<!-- // <script type="text/javascript" src="/js/controllers/users.ctrl.js"></script> -->
 	</head>
 	<body ng-controller='MasterCtrl'>
@@ -165,7 +173,17 @@
 		</nav> -->
 		
 		<div class='container'>
-			<h2>Index.ejs</h2>
+			<header>
+				<h2>Index.ejs</h2>
+				<nav>
+					<a href="/#/">Home</a>
+					<!-- <a href="/#/posts">Posts</a> -->
+					<a href="#/forums">Forums</a>
+					<a href="#/chatroom">Chatroom</a>
+					<a href="#/login">Login</a>
+					<a href="#/register">Register</a>
+				</nav>
+			</header>
 
 			<div ng-view></div>
 
@@ -180,5 +198,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>

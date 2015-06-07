@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
   salt: { type: String, trim: true },
   auth_token: { type: String, trim: true },
   created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now }
 });
 
 mongoose.model('User', UserSchema);
